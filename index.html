@@ -3,40 +3,427 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SpheroscopiC</title>
+  <title>SpheroscopiC.</title>
+  <link rel="icon" href="https://raw.githubusercontent.com/shubh-b/shubh-b.github.io/refs/heads/master/spheroscopic.com.html.png" type="image/png">
   <style>
+    .logo {
+      position: absolute;
+      top: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .logo img {
+      width: 175px; /* Adjust size as needed */
+      height: auto;
+    }
+    
     body {
       display: flex;
-      justify-content: top;
-      align-items: center;
-      height: 100vh; /* Full viewport height */
-      margin: 0; /* Remove default margins */
-      font-family: Cambria, sans-serif; /* Optional styling */
-      background-color: #f0f0f0; /* Optional background */
+      margin: 0;
+      font-family: Cambria, sans-serif;
+      background-color: #f0f0f0; /* Lighter gray background inside the right box */
+      overflow: hidden;
     }
-    .centered {
-      max-width: 600px; /* Optional for readable width */
-      text-align: center; /* Optional for centered text */
+    .left-container {
+      width: 20%; /* Fixed width for the left container */
+      position: fixed; /* Fix position */
+      height: 100vh; /* Full height of the viewport */
+      display: flex;
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+      background-color: #b8abab; /* Ash-Rose background for the body */
+    }
+    .left-box {
+      background-color: #ffffff; /* White background inside the box */
+      padding: 10px;
+      width: 80%; /* Made the white background box wider */
+      max-width: 400px; /* Optional: Limit maximum width */
+      border-radius: 15px; /* Rounded corners */
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Shading effect */
+      text-align: center; /* Center text inside the box */
+    }
+
+    .youtube-logo {
+      position: absolute;
+      bottom: 200px; /* Adjust as needed */
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .youtube-logo img {
+      width: 50px;
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .youtube-logo img:hover {
+      transform: scale(1.2);
+    }
+
+    .udemy-logo {
+      position: absolute;
+      bottom: 60px; /* Adjust as needed */
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .udemy-logo img {
+      width: 85px;
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .udemy-logo img:hover {
+      transform: scale(1.2);
+    }
+
+    .copyright {
+      position: absolute; /* Absolute positioning */
+      bottom: 10px; /* 10px from the bottom of the container */
+      left: 10px; /* 10px from the left of the container */
+      font-size: 12px; /* Small font size */
+      color: #555; /* Subtle text color */
+    }
+    .right-box {
+      flex: 1;
+      margin-left: 20%; /* Offset to account for the fixed left container */
       padding: 20px;
-      background: white; /* Optional styling */
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional styling */
-      border-radius: 10px; /* Optional for rounded corners */
+      width: 80%; /* 4/5 size of the page */
+      overflow-y: auto; /* Enable vertical scrolling */
+      height: 100vh; /* Full height of the viewport */
+      background-color: #f0f0f0; /* Lighter gray background inside the right box */
+      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
+      margin-right: 80px; /* Prevent content from being covered by the collapsed panel */
+      transition: margin-right 0.3s ease;
+      box-sizing: border-box;
+      padding-bottom: 40px; /* Extra space at the bottom */
+      position: relative;
+      z-index: 1; /* Lower layer */
     }
+
+    /* Chrome, Edge, Safari */
+  .right-box::-webkit-scrollbar {
+      width: 4px; /* Very thin */
+    }
+
+  .right-box::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+  }
+
+  /* Firefox */
+  .right-box {
+    scrollbar-width: thin;
+    scrollbar-color: #888 transparent;
+  }
+
+    .headlines-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 100%;
+            background-color: silver;
+            color: #000;
+            padding: 10px;
+            box-sizing: border-box;
+            transition: width 0.4s ease-in-out;
+            overflow-y: auto;
+            cursor: pointer;
+            scrollbar-width: thin;
+            scrollbar-color: #888 silver;
+            z-index: 10; /* Bring panel in front of scrollbar */
+        }
+        .headlines-panel:hover {
+            width: 300px;
+        }
+        .headlines-panel::-webkit-scrollbar {
+            width: 4px;
+        }
+        .headlines-panel::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        .headline {
+            display: block;
+            margin: 2px 0;
+            white-space: nowrap;
+            text-overflow: clip;
+            width: 100%;
+            padding: 2px 0;
+            overflow: hidden;
+            position: relative;
+            text-decoration: none !important;
+            color: black; /* Optional: Ensure a clear text color */
+        }
+        .headline a {
+            text-decoration: none !important; /* Ensure links inside headlines aren't underlined */
+        }
+
+        .headline:hover {
+            text-decoration: underline !important; /* Underline on hover */
+        }
+
+        /* Apply animation only for long headlines */
+        .headline span {
+            display: inline-block;
+            /*padding-left: 50%;*/
+            transform: translateX(0);
+        }
+        
+       /* Start animation only when panel is hovered */
+       /* .headlines-panel:hover .headline span {
+            animation: marquee 5s linear infinite alternate;
+        } */
+
+        /* Apply animation only when hovering */
+        .headline:hover span {
+            display: inline-block;
+            animation: marquee 3s linear infinite alternate;
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(0);
+                }
+            to {
+                transform: translateX(-50%);
+          }
+        }
+
+        .headline:hover span {
+            text-decoration: underline !important; /* Underline appears on hover */
+        }
+
+        .headline:hover::after {
+            content: attr(title);
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            top: 100%;
+            left: 0;
+            white-space: nowrap;
+            z-index: 10;
+            overflow: visible;  /* Ensure it's visible */
+        }
+
+        .pulse-word {
+          display: inline-block;
+          animation: pulse 1s infinite;
+      }
+
+      @keyframes pulse {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.1); }
+          100% { transform: scale(1); }
+      }
+
+      .hover-courseimage {
+          width: 100%;               /* Makes it responsive to container */
+          max-width: 450px;          /* Limits max size */
+          display: block;            /* Required for margin auto to work */
+          margin: 20px auto;         /* Centers the image */
+          transition: transform 0.3s ease;
+          border-radius: 8px;
+          cursor: pointer;
+      }
+
+      .hover-courseimage:hover {
+          transform: scale(1.1); /* Slightly enlarge */
+      }
+
   </style>
 </head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <body>
-  <div class="centered">
-    <h1><font   color="blue"> SpheroscopiC! </font> </h1>
-    <p>
-      Well, specific meaning of this term is unavailable in dictionary so far.
-      Perhaps it connotes the way we look at data to solve problems on this spherical earth.
+  <div class="left-container">
+    <div class="logo">
+      <img src="https://raw.githubusercontent.com/shubh-b/shubh-b.github.io/refs/heads/master/spheroscopic.com.html.png" alt="Logo" style="background: transparent;"/>
+    </div>
+
+    <div class="left-box">
+      <h2><font color="blue", size="6">SpheroscopiC.</font></h2>
+      <p><font size="4">Let data talk, before it deluges the spherical Earth!</font></p>
+    </div>
+
+    <!-- YouTube Logo -->
+    <div class="youtube-logo">
+      <a href="https://www.youtube.com/@spheroscopic" target="_blank" rel="noopener noreferrer">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_play_button_icon_%282013%E2%80%932017%29.svg" alt="YouTube" />
+      </a>
+    </div>
+
+    <!-- Udemy Logo -->
+    <div class="udemy-logo">
+      <a href="https://www.udemy.com/user/subhabrata-p/" target="_blank" class="udemy-logo">
+      <img src="https://raw.githubusercontent.com/shubh-b/shubh-b.github.io/refs/heads/master/Udemy-Emblem-Ref-Logo.png" alt="Udemy">
+    </a>
+    </div>
+
+    <div class="copyright">
+      <font color="navy", size="3">© <span id="year"></span> Subhabrata P.</font>
+    </div>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </div>
+
+  <!-- Headlines Panel -->
+  <div class="headlines-panel">
+    <h4>Headlines</h4>
+    <div class="headline" data-section="headline2" title="Online Course: 7 Bites of Combinatorics"><a href="#headline2"><span>Online Course: 7 Bites of Combinatorics</a></span></div>
+    <div class="headline" data-section="headline1" title="Online course: Julia Programming for Machine Learning"><a href="#headline1"><span>Online course: Julia Programming for Machine Learning</a></span></div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <!-- Right Box Content -->
+<div class="right-box">
+
+
+
+
+
+  <h2 id="headline2"><span class="pulse-word"><font color="red">Free</font></span> Online Course: 7 Bites of Combinatorics</h2>
+  <p>Counting arrangements, permutations and combinations of elements in several circumstances with constraints are crucial in many
+    scientific fields. This course
+  </p>
+  
+  <a href="https://www.udemy.com/course/combinatorics-in-python/?couponCode=D438727DFA5240AA958E" target="_blank">
+    <img src="https://raw.githubusercontent.com/shubh-b/shubh-b.github.io/refs/heads/master/spheroscopic.com/uDMy%20Landing%20Image%20-%207%20Bites%20of%20Combinatorics.png" alt="7 Bites of Combinatorics" class="hover-courseimage">
+  </a>
+  
+  <p style="margin-bottom: 150px;"> is structured for learning combinatorial logic through tasks, exercises and to perform combinatorial tasks in Python.
+    Click <span class="pulse-word">
+      <a href="https://www.udemy.com/course/combinatorics-in-python/?couponCode=D438727DFA5240AA958E" target="_blank" style="color: red;">
+        here
+      </a>
+      </span> to take this online course absolutely free.
     </p>
-  </div>
+    
+
+
+
+
+  <h2 id="headline1">Online Course: Julia Programming for Machine Learning</h2>
+  <p>Julia programming is one of the top choices for scientists, researchers, and machine learning engineers to solve real-world problems nowadays.
+    This course
+  </p>
+
+  <a href="https://www.udemy.com/course/julia-programming-language/?referralCode=4074A9B9B507857E5A9B" target="_blank">
+    <img src="https://raw.githubusercontent.com/shubh-b/shubh-b.github.io/refs/heads/master/spheroscopic.com/uDMy%20Landing%20Image%20-%20Julia%20Programming%20for%20Machine%20Learning.png" alt="Julia Programming for Machine Learning" class="hover-courseimage">
+  </a>
+
+  <p style="margin-bottom: 210px;">is designed for anyone who wants to learn Julia programming from scratch. It will take you to an advanced level of understanding Julia—whether
+    you're an absolute beginner or an experienced coder in another programming environment. To join this course, click
+    <span class="pulse-word">
+      <a href="https://www.udemy.com/course/julia-programming-language/?referralCode=4074A9B9B507857E5A9B" target="_blank" style="color: red;">
+        here
+      </a>
+      </span>.
+  </p>
+
+
+
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- JavaScript for enlarging the headlines -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const sections = document.querySelectorAll(".right-box h2");
+    const headlines = document.querySelectorAll(".headline");
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                let sectionId = entry.target.id;
+                highlightHeadline(sectionId);
+            }
+        });
+    }, { rootMargin: "-50px 0px -90% 0px", threshold: 0.1 });
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+
+    headlines.forEach(headline => {
+        headline.addEventListener("click", function () {
+            let sectionId = this.getAttribute("data-section");
+            highlightHeadline(sectionId);
+            
+            // Scroll to the corresponding section in the right box
+            let targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: "smooth" });
+            }
+        });
+    });
+
+    function highlightHeadline(sectionId) {
+        headlines.forEach(headline => {
+            headline.style.fontSize = "16px";
+            headline.style.fontWeight = "normal";
+        });
+
+        let activeHeadline = document.querySelector(`.headline[data-section='${sectionId}']`);
+        if (activeHeadline) {
+            activeHeadline.style.fontSize = "20px";
+            activeHeadline.style.fontWeight = "bold";
+        }
+    }
+});
+
+</script>
+
 </body>
-  <div>
-    <center>
-    <p><font color="grey" > Coming soon! </p></font>
-    <p><font color="grey" > © 2025 Subhabrata P. </font></p>
-    </center>
-  </div>
 </html>
